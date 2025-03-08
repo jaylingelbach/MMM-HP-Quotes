@@ -60,20 +60,43 @@ Module.register("MMM-HP-Quotes", {
         return wrapper;
     },
     // get notification from the backend
-    socketNotificationReceived: function (notification, payload) {
-        if (notification === "NEW_QUOTE") {
-            console.log("New quote received:", payload.quote);
+    // socketNotificationReceived: function (notification, payload) {
+    //     if (notification === "NEW_QUOTE") {
+    //         console.log("New quote received:", payload.quote);
 
-            // Update the data and the DOM
-            this.quoteData = {
-                quote: payload.quote,
-                speaker: payload.speaker,
-                story: payload.story,
-                source: payload.source,
-            };
+    //         // Update the data and the DOM
+    //         this.quoteData = {
+    //             quote: payload.quote,
+    //             speaker: payload.speaker,
+    //             story: payload.story,
+    //             source: payload.source,
+    //         };
 
-            // Update the DOM with fade effect
-            this.updateDom(this.config.fadeSpeed);
+    //         // Update the DOM with fade effect
+    //         this.updateDom(this.config.fadeSpeed);
+    //     }
+    // }
+    socketNotificationReceived : async function(notification, payload){
+    if (notification === "GET_NEW_QUOTE") {
+        try {
+            const res = await fetchWithRetry("https://api.portkey.uk/quote");
+    
+            this.sendSocketNotification("NEW_QUOTE", {
+                quote: res.quote || "No quote available",
+                speaker: res.speaker || "Unknown",
+                story: res.story || "No data given...",
+                source: res.source || "No data given...",
+            });
+        } catch (error) {
+            console.error("Error fetching quote after retries:", error);
+            this.sendSocketNotification("NEW_QUOTE", {
+                quote: "Failed to fetch a new quote.",
+                speaker: "Unknown",
+                story: "Unknown",
+                source: "Unknown",
+            });
         }
     }
+}
+    
 });
