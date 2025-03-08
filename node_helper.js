@@ -43,7 +43,8 @@ module.exports = NodeHelper.create({
                 if (!response.ok) throw new Error(`Error fetching quotes: ${response.statusText}`);
 
                 const res = await response.json();
-                if (!quote) throw new Error("No quotes found");
+                console.log(`!@!@!@!@!@!@!@!@!@!@!@!@! ${res}`);
+                if (!res) throw new Error("No quotes found");
                 // TODO error handling
 
                 // Send notification back to frontend
