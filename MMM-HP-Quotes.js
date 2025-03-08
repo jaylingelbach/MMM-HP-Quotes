@@ -23,6 +23,10 @@ Module.register("MMM-HP-Quotes", {
         }, this.updateInterval);
     },
 
+    getHeader: function() {
+        return "Harry Potter Quotes"
+    },
+
     getDom: function () {
         const wrapper = document.createElement("div");
         wrapper.className = "quote";

@@ -4,7 +4,6 @@ async function fetchWithRetry(url, retries = 3, delay = 2000) {
     const fetch = (await import("node-fetch")).default;
 
     for (let attempt = 1; attempt <= retries; attempt++) {
-        console.log(`fetchWithRetry: Attempt ${attempt}`);
         try {
             const response = await fetch(url, { timeout: 5000 }); // Set timeout to prevent hanging requests
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
