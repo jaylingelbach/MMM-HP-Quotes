@@ -8,7 +8,7 @@ module.exports = NodeHelper.create({
 
     socketNotificationReceived: async function (notification, payload) {
         if (notification === "SET_UPDATE_INTERVAL") {
-            console.log("Update interval set: ", payload);
+            console.log("Update interval set HP-Quotes: ", payload);
             this.updateInterval = payload;
             return;
         }
@@ -33,19 +33,14 @@ module.exports = NodeHelper.create({
             try {
                 const fetch = (await import("node-fetch")).default;
 
-                const response = await fetch("https://api.portkey.uk/quote", {
-                    headers: {
-                        Accept: "application/json",
-                        //Authorization: `Bearer ${this.apiKey}`,
-                    },
-                });
+                const response = await fetch("https://api.portkey.uk/quote")
 
                 console.log("RESPONSE FROM HP QUOTES:  ", response);
 
                 if (!response.ok) throw new Error(`Error fetching quotes: ${response.statusText}`);
 
                 const res = await response.json();
-                console.log(`!@!@!@!@!@!@!@!@!@!@!@!@! ${res}`);
+                console.log(`!@!@!@!@!@!@!@!@!@!@!@!@! RES ${res}`);
                 if (!res) throw new Error("No quotes found");
                 // TODO error handling
 
