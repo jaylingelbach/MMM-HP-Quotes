@@ -13,12 +13,11 @@ Module.register("MMM-HP-Quotes", {
             story: "Loading...",
             source: "Loading...",
         };
-
-        console.log("Requesting first quote...");
+        // init quote
         this.sendSocketNotification("GET_NEW_QUOTE");
 
         setInterval(() => {
-            console.log("Requesting new quote from API...");
+            // request new quote with default or user set interval.
             this.sendSocketNotification("GET_NEW_QUOTE");
         }, this.updateInterval);
     },
@@ -44,8 +43,6 @@ Module.register("MMM-HP-Quotes", {
 
     socketNotificationReceived: function (notification, payload) {
         if (notification === "NEW_QUOTE") {
-            console.log("New quote received:", payload);
-
             this.quoteData = payload;
             this.updateDom(this.config.fadeSpeed);
         }

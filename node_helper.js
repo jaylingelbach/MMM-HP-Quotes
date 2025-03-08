@@ -35,10 +35,8 @@ module.exports = NodeHelper.create({
         }
 
         if (notification === "GET_NEW_QUOTE") {
-            console.log("GET_NEW_QUOTE received. Calling fetchWithRetry...");
             try {
                 const res = await fetchWithRetry("https://api.portkey.uk/quote");
-                console.log("Successfully fetched quote:", res);
 
                 this.sendSocketNotification("NEW_QUOTE", {
                     quote: res.quote || "No quote available",
