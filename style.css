@@ -1,0 +1,35 @@
+.quote {
+  max-width: 600px; /* Set a max width */
+  margin: 20px auto; /* Centering */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center; /* Center text */
+  font-family: 'Georgia', serif; /* Classic serif font */
+  color: #fff; /* White text */
+}
+
+.quote blockquote {
+  font-size: 1.5em; /* Make the quote stand out */
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.quote cite {
+  font-size: 1.2em;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  color: #ffd700; /* Golden text */
+}
+
+.quote div {
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.quote strong {
+  color: #ffcc00; /* Highlighted gold text */
+}
