@@ -33,7 +33,7 @@ module.exports = NodeHelper.create({
             try {
                 const fetch = (await import("node-fetch")).default;
 
-                const response = await fetch("https://api.portkey.uk/quote/UUID", {
+                const response = await fetch("https://api.portkey.uk/quote", {
                     headers: {
                         Accept: "application/json",
                         //Authorization: `Bearer ${this.apiKey}`,
