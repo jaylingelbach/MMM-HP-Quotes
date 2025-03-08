@@ -19,16 +19,16 @@ module.exports = NodeHelper.create({
         }
 
         if (notification === "GET_NEW_QUOTE") {
-            if (!this.apiKey) {
-                console.error("API key is missing!");
-                this.sendSocketNotification("NEW_QUOTE", {
-                    quote: "No API key provided.",
-                    speaker: "Unknown",
-                    story: "Unknown",
-                    source: "Unknown",
-                });
-                return;
-            }
+            // if (!this.apiKey) {
+            //     console.error("API key is missing!");
+            //     this.sendSocketNotification("NEW_QUOTE", {
+            //         quote: "No API key provided.",
+            //         speaker: "Unknown",
+            //         story: "Unknown",
+            //         source: "Unknown",
+            //     });
+            //     return;
+            // }
 
             try {
                 const fetch = (await import("node-fetch")).default;
@@ -36,7 +36,7 @@ module.exports = NodeHelper.create({
                 const response = await fetch("https://api.portkey.uk/quote/UUID", {
                     headers: {
                         Accept: "application/json",
-                        Authorization: `Bearer ${this.apiKey}`,
+                        //Authorization: `Bearer ${this.apiKey}`,
                     },
                 });
 
