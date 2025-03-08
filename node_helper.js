@@ -40,6 +40,8 @@ module.exports = NodeHelper.create({
                     },
                 });
 
+                console.log("RESPONSE FROM HP QUOTES:  ", response);
+
                 if (!response.ok) throw new Error(`Error fetching quotes: ${response.statusText}`);
 
                 const res = await response.json();
